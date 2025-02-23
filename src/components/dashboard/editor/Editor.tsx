@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import Quill, { type Delta, type Range } from "quill";
 import "quill/dist/quill.snow.css";
-import { quillToolbar } from "@/lib/constants";
+import { quillToolbar } from "@/lib/constants/quill";
 
 interface EditorProps {
   readOnly?: boolean;
@@ -9,7 +9,7 @@ interface EditorProps {
   onTextChange?: (delta: Delta, oldDelta: Delta, source: string) => void;
   onSelectionChange?: (range: Range, oldRange: Range, source: string) => void;
   onEditorReady?: (editor: Quill) => void;
-  onImageUpload?: (file: File) => Promise<string>;
+  // onImageUpload?: (file: File) => Promise<string>;
 }
 
 export default function Editor({

@@ -10,8 +10,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import RateStars from "@/components/user-interactions/RateStars";
-import type { Novel } from "@/lib/types/novel";
+import RateStars from "@/components/user-activity/RateStars";
+import { Novel } from "@/lib/types/novel";
 
 interface GalleryProps {
   items: Novel[];
@@ -44,7 +44,6 @@ export default function Gallery({ items, hasControls = false }: GalleryProps) {
           align: "start",
           loop: true,
         }}>
-          
         {hasControls && (
           <>
             <div className="flex px-4 gap-x-3 right-0 justify-end absolute bottom-4 z-10 *:!bg-white *:!text-black">
@@ -98,11 +97,11 @@ function GalleryItem({ item, isExpanded, toggleReadMore }: GalleryItemProps) {
       <div className="absolute bottom-0 space-y-3 left-4 *:relative right-0 p-4 before:absolute before:inset-0 before:bg-black/60 before:blur-lg">
         <span className="flex flex-row gap-4">
           <a
-            href={item.links.novelUpdatesUrl}
+            href={item.translatedNovelUrl ?? ""}
             className="text-lg font-semibold">
             {item.title}
           </a>
-          <RateStars rate={item.rating} reviewsUrl={item.links.reviewsUrl} />
+          <RateStars rate={item.rating} reviewsUrl={item.reviewsUrl ?? ""} />
         </span>
         <p
           className={descriptionClasses}

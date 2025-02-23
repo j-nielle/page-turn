@@ -1,14 +1,19 @@
-export interface Novel {
+import { NovelLanguage, NovelStatus } from "@/lib/constants/novel";
+import { NovelSchema } from "@/lib/validators/novel";
+
+export type Novel = NovelSchema & {
 	id: number;
-  title: string;
-  description: string;
-	author: string;
-	lang?: string;
-	status: 'completed' | 'ongoing' | 'dropped';
-	coverUrl: string;
-	rating: number;
-	links: {
-		novelUpdatesUrl: string;
-		reviewsUrl: string;
-	}
+};
+
+export const initialFormValues: NovelSchema = {
+	title: "",
+	description: "",
+	author: "",
+	lang: NovelLanguage.Chinese,
+	status: NovelStatus.Ongoing,
+	coverUrl: "",
+	rating: 0,
+	translatedNovelUrl: "",
+	rawNovelUrl: "",
+	reviewsUrl: "",
 }
