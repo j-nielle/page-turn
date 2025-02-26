@@ -1,7 +1,7 @@
 import { NovelLanguage, NovelStatus } from "@/lib/constants/novel";
-import { Novel } from "@/lib/types/novel";
+import { DevPicks } from "@/lib/types/novel";
 
-export const selections: Novel[] = [
+export const selections: DevPicks[] = [
 	{
 		id: 1,
 		title: "Doomsday Wonderland《末日乐园》",
@@ -31,7 +31,7 @@ export const selections: Novel[] = [
 	{
 		id: 3,
 		title: "Reverend Insanity《蛊真人》",
-		description: "A world where these magical beings are nurtured, refined, and wielded. At the heart of it all stands a villain of unparalleled ambition, Fang Yuan. Reborn 500 years into the past with the Spring Autumn Cicada he meticulously refined, he uses his profound wisdom and battle-hardened experience to outmaneuver his enemies.<br /><br />In a world of unrelenting cruelty, where power is cultivated through the mastery of Gu, Fang Yuan rises as a figure who bends the world to his will.",
+		description: "A villain of unparalleled ambition, Fang Yuan, was reborn 500 years into the past with the Spring Autumn Cicada he refined, profound wisdom and battle-hardened experience.<br /><br />In a world of unrelenting cruelty, where power is cultivated through the mastery of Gu, Fang Yuan rises as a figure who bends the world to his will.",
 		author: "",
 		lang: NovelLanguage.Chinese,
 		status: NovelStatus.Dropped,
