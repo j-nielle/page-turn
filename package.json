@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroui/input": "^2.4.13",
     "@heroui/react": "^2.7.2",
+    "@heroui/system": "^2.4.10",
+    "@heroui/theme": "^2.4.9",
     "@hookform/resolvers": "^4.1.1",
+    "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-scroll-area": "^1.2.3",
     "@radix-ui/react-separator": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.2",
