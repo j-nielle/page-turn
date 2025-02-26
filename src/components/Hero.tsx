@@ -1,6 +1,5 @@
 import React from "react";
-import Recommendations from "@/components/novel/Recommendations";
-import RecentlyUpdated from "@/components/novel/RecentlyUpdated";
+import { Recommendations, RecentlyUpdated } from "@/components/novel";
 
 export default function Hero() {
   return (
