@@ -1,5 +1,6 @@
 import { heroui } from '@heroui/theme';
 import type { Config } from "tailwindcss";
+import plugin from 'tailwindcss/plugin';
 
 export default {
 	content: [
@@ -63,5 +64,31 @@ export default {
 	plugins: [
 		// eslint-disable-next-line @typescript-eslint/no-require-imports
 		heroui(), require("tailwindcss-animate"),
+		plugin(function ({ addUtilities, matchUtilities }) {
+      matchUtilities(
+        {
+          'scroll-size': (value) => ({
+            '&::-webkit-scrollbar': {
+              width: `${value}px`,
+              height: `${value}px`,
+            },
+          }),
+        },
+        {
+          values: {
+            light: '1',
+            2: '2',
+            3: '3',
+            4: '4',
+            5: '5',
+            6: '6',
+            7: '7',
+            8: '8',
+            9: '9',
+            fat: '10',
+          },
+        },
+      );
+    }),
 	],
 } satisfies Config;
