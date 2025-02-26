@@ -5,6 +5,8 @@ export type Novel = NovelSchema & {
 	id: number;
 };
 
+export type DevPicks = Omit<Novel, "coverUrl"> & { coverUrl: string };
+
 export const initialFormValues: NovelSchema = {
 	title: "",
 	description: "",

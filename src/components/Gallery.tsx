@@ -1,7 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -10,10 +9,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import RateStars from "@/components/user-activity/RateStars";
-import { Novel } from "@/lib/types/novel";
-
-type DevPicks = Omit<Novel, "coverUrl"> & { coverUrl: string };
+import StarRating from "@/components/user-activity/StarRating";
+import { getDescriptionClass } from "@/lib/helpers/novel";
+import { DevPicks } from "@/lib/types/novel";
+import useToggleStates from "@/lib/hooks/useToggleState";
+import { cn } from "@/lib/utils";
 
 interface GalleryProps {
   items: DevPicks[];
@@ -21,16 +21,9 @@ interface GalleryProps {
 }
 
 export default function Gallery({ items, hasControls = false }: GalleryProps) {
-  const [readMoreStates, setReadMoreStates] = useState<Record<number, boolean>>(
+  const { states: expand, toggleState: toggleExpand } = useToggleStates<number>(
     {}
   );
-
-  const toggleReadMore = (id: number) => {
-    setReadMoreStates((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
 
   return (
     <div className="relative">
@@ -60,8 +53,8 @@ export default function Gallery({ items, hasControls = false }: GalleryProps) {
             <GalleryItem
               key={item.id}
               item={item}
-              isExpanded={!!readMoreStates[item.id]}
-              toggleReadMore={toggleReadMore}
+              isExpanded={expand[item.id]}
+              toggleExpand={toggleExpand}
             />
           ))}
         </CarouselContent>
@@ -73,17 +66,11 @@ export default function Gallery({ items, hasControls = false }: GalleryProps) {
 interface GalleryItemProps {
   item: DevPicks;
   isExpanded: boolean;
-  toggleReadMore: (id: number) => void;
+  toggleExpand: (id: number) => void;
 }
 
-function GalleryItem({ item, isExpanded, toggleReadMore }: GalleryItemProps) {
-  const descriptionClasses = cn(
-    "text-white/80 transition-transform duration-300 ease-in",
-    {
-      "line-clamp-none": isExpanded,
-      "text-ellipsis line-clamp-1 max-h-32 overflow-hidden pr-28": !isExpanded,
-    }
-  );
+function GalleryItem({ item, isExpanded, toggleExpand }: GalleryItemProps) {
+  const descriptionClass = getDescriptionClass(isExpanded, "max-h-7");
 
   return (
     <CarouselItem className="overflow-hidden relative z-50">
@@ -97,21 +84,25 @@ function GalleryItem({ item, isExpanded, toggleReadMore }: GalleryItemProps) {
       </div>
 
       <div className="absolute bottom-0 space-y-3 left-4 *:relative right-0 p-4 before:absolute before:inset-0 before:bg-black/60 before:blur-lg">
-        <span className="flex flex-row gap-4">
+        <span
+          className={cn("flex-col sm:flex-row gap-4", {
+            "hidden min-[490px]:flex": isExpanded,
+            "min-[490px]:flex ": !isExpanded,
+          })}>
           <a
             href={item.translatedNovelUrl ?? ""}
             className="text-lg font-semibold">
             {item.title}
           </a>
-          <RateStars name="rating" readOnly rating={item.rating} reviewsUrl={item.reviewsUrl ?? ""} />
+          <StarRating rating={item.rating} reviewsUrl={item.reviewsUrl ?? ""} />
         </span>
         <p
-          className={descriptionClasses}
+          className={descriptionClass}
           dangerouslySetInnerHTML={{ __html: item.description }}
         />
         <button
           className="text-white w-32 text-left cursor-pointer hover:underline hover:underline-offset-3"
-          onClick={() => toggleReadMore(item.id)}>
+          onClick={() => toggleExpand(item.id)}>
           Read {isExpanded ? "less" : "more"}
         </button>
       </div>
