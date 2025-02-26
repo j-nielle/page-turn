@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Editor } from "@/components";
+import Editor from "@/components/editor/Editor";
 import Quill, { Delta, Range } from "quill";
 import { useState } from "react";
 
