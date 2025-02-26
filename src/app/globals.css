@@ -34,6 +34,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -64,20 +65,20 @@ body {
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
-
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+@layer components {
+  .input-label {
+    @apply w-full text-[#595a62] font-normal bg-transparent outline-none autofill:bg-transparent bg-clip-text text-small pe-6;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  .input-wrapper {
+    @apply px-3 w-full inline-flex flex-row shadow-sm bg-default-100 border-2 border-default-200 hover:border-default-400 rounded-none items-center justify-center gap-0 h-14 min-h-14 py-2;
   }
 }
