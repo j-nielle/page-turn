@@ -1,14 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import AddNovel from '@/components/dashboard/AddNovel';
+import AddNovel from "@/components/dashboard/AddNovel";
+import { NovelList } from "@/components/novel";
 
 export default function Page() {
   return (
     <div>
-      <div>list of chapters in this novel</div>
-      <div className="px-4 py-2 w-full border-2 border-default-200">
-      <AddNovel />
-      </div>
+      <section className="grid grid-cols-6 grid-rows-4 gap-x-4">
+        <NovelList className="row-span-4 col-span-5" />
+        <AddNovel className="col-span-1 row-span-4" />
+      </section>
       <Link
         href="/dashboard/1/add-chapter"
         className="text-blue-500 hover:underline">

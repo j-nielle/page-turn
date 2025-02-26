@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from './Home';
+import Hero from './Hero';
 import Browse from './Browse'
 
 export default function Home() {
