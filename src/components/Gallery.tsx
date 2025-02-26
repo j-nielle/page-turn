@@ -26,40 +26,32 @@ export default function Gallery({ items, hasControls = false }: GalleryProps) {
   );
 
   return (
-    <div className="relative">
-      <div className="absolute z-20 right-0 -top-3.5 w-full flex justify-center">
-        <p className="bg-indigo-600 px-4 py-1 text-center rounded-full ">
-          Coder&apos;s Curations
-        </p>
-      </div>
+    <Carousel
+      className="w-full"
+      opts={{
+        align: "start",
+        loop: true,
+      }}>
+      {hasControls && (
+        <>
+          <div className="flex px-4 gap-x-3 right-0 justify-end absolute bottom-4 z-10 *:!bg-white *:!text-black">
+            <CarouselPrevious variant="default" />
+            <CarouselNext variant="default" />
+          </div>
+        </>
+      )}
 
-      <Carousel
-        className="w-full"
-        opts={{
-          align: "start",
-          loop: true,
-        }}>
-        {hasControls && (
-          <>
-            <div className="flex px-4 gap-x-3 right-0 justify-end absolute bottom-4 z-10 *:!bg-white *:!text-black">
-              <CarouselPrevious variant="default" />
-              <CarouselNext variant="default" />
-            </div>
-          </>
-        )}
-
-        <CarouselContent className="!z-10">
-          {items.map((item) => (
-            <GalleryItem
-              key={item.id}
-              item={item}
-              isExpanded={expand[item.id]}
-              toggleExpand={toggleExpand}
-            />
-          ))}
-        </CarouselContent>
-      </Carousel>
-    </div>
+      <CarouselContent className="!z-10">
+        {items.map((item) => (
+          <GalleryItem
+            key={item.id}
+            item={item}
+            isExpanded={expand[item.id]}
+            toggleExpand={toggleExpand}
+          />
+        ))}
+      </CarouselContent>
+    </Carousel>
   );
 }
 
@@ -71,6 +63,7 @@ interface GalleryItemProps {
 
 function GalleryItem({ item, isExpanded, toggleExpand }: GalleryItemProps) {
   const descriptionClass = getDescriptionClass(isExpanded, {
+    expandedClass: "max-h-72 scroll-size-1",
     collapsedClass: "max-h-7",
   });
 
