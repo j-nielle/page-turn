@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { NovelDescriptionClasses as Classes } from "../types/novel";
 
 export const parseTitle = (title: string) => {
 	if (title.includes(' ')) {
@@ -9,12 +10,13 @@ export const parseTitle = (title: string) => {
 
 export const getDescriptionClass = (
 	isExpanded: boolean,
-	className: string = "max-h-52"
+	classes: Classes
 ) =>
 	cn(
 		"text-white/80 transition-transform duration-300 ease-in",
 		{
-			"line-clamp-none": isExpanded,
-			[`text-ellipsis line-clamp-5 ${className} overflow-hidden`]: !isExpanded,
-		}
+			[`line-clamp-none ${classes.expandedClass}`]: isExpanded,
+			[`text-ellipsis line-clamp-5 ${classes.collapsedClass} overflow-hidden`]: !isExpanded,
+		},
+		classes.baseClass
 	);
