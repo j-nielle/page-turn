@@ -5,6 +5,8 @@ export type Novel = NovelSchema & {
 	id: number;
 };
 
+export type ViewTypes = 'list-view' | 'grid-view';
+
 export type DevPicks = Omit<Novel, "coverUrl"> & { coverUrl: string };
 
 export const initialFormValues: NovelSchema = {
@@ -19,4 +21,10 @@ export const initialFormValues: NovelSchema = {
 	translatedNovelUrl: "",
 	rawNovelUrl: "",
 	reviewsUrl: "",
+}
+
+export type NovelDescriptionClasses = {
+	baseClass?: string;
+	expandedClass?: string;
+	collapsedClass?: string;
 }
