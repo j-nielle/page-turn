@@ -10,7 +10,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <Analytics />
       <HeroUIProvider>
         <Header />
-        <main className="flex flex-col p-5 md:px-10 md:py-5 min-h-screen">
+        <main className="flex flex-col p-5 min-h-screen">
           {children}
         </main>
         <Footer />

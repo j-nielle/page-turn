@@ -63,7 +63,7 @@ interface GalleryItemProps {
 
 function GalleryItem({ item, isExpanded, toggleExpand }: GalleryItemProps) {
   const descriptionClass = getDescriptionClass(isExpanded, {
-    expandedClass: "max-h-72 scroll-size-1",
+    expandedClass: "max-h-40 scroll-size-1 pr-6",
     collapsedClass: "max-h-7",
   });
 
@@ -79,11 +79,7 @@ function GalleryItem({ item, isExpanded, toggleExpand }: GalleryItemProps) {
       </div>
 
       <div className="absolute bottom-0 space-y-3 left-4 *:relative right-0 p-4 before:absolute before:inset-0 before:bg-black/60 before:blur-lg">
-        <span
-          className={cn("flex flex-col sm:flex-row gap-4", {
-            "hidden min-[490px]:flex": isExpanded,
-            "flex ": !isExpanded,
-          })}>
+        <span className="flex flex-col sm:flex-row gap-4">
           <a
             href={item.translatedNovelUrl ?? ""}
             className="text-lg font-semibold">
