@@ -13,3 +13,5 @@ export const quillToolbar = [
 	[{ direction: "rtl" }, { align: [] }],
 	["link", "image", "video"],
 ]
+
+export type QuillToolbarOptions = Partial<typeof quillToolbar>
