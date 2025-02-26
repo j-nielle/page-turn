@@ -10,7 +10,7 @@ import { novelLanguages, novelStatuses } from "@/lib/constants/novel";
 import Input from "@/components/forms/Input";
 import Select from "@/components/forms/Select";
 import TextArea from "@/components/forms/TextArea";
-import RateStars from "@/components/user-activity/RateStars";
+import SetNovelRating from "@/components/user-activity/SetNovelRating";
 
 interface NovelFormProps {
   handleClose: () => void;
@@ -79,7 +79,7 @@ export default function NovelForm({ handleClose }: NovelFormProps) {
           <p className="input-label">
             Rating:
           </p>
-          <RateStars control={control} name="rating" readOnly={false} />
+          <SetNovelRating control={control} name="rating" />
         </div>
 
         {/* <Input
