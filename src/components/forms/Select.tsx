@@ -25,6 +25,8 @@ const Select = <T extends FieldValues>({
   control,
   rules,
   items = [],
+  radius = "none",
+  variant = "faded",
   ...rest
 }: SelectProps<T>) => {
   const id = useId();
@@ -46,6 +48,8 @@ const Select = <T extends FieldValues>({
     <FormSelect
       {...rest}
       id={id}
+      radius={radius}
+      variant={variant}
       className={cn(className)}
       errorMessage={error?.message}
       onChange={handleChange}

@@ -4,19 +4,28 @@ import {
   type InputProps as FormInputProps,
 } from "@heroui/react";
 import {
+  ControllerRenderProps,
   type FieldValues,
   useController,
   UseControllerProps,
 } from "react-hook-form";
+import { parseInput } from "@/lib/helpers/input";
+import { cn } from "@/lib/utils";
 
-type InputProps<T extends FieldValues> = FormInputProps & UseControllerProps<T>;
+type InputProps<T extends FieldValues> = FormInputProps &
+  UseControllerProps<T> &
+  Partial<ControllerRenderProps<T>>;
 
 const Input = <T extends FieldValues>({
   name,
   control,
   rules,
   type = "text",
-  ...rest
+  radius = "none",
+  variant = "faded",
+  className = "",
+  isClearable = true,
+  ...props
 }: InputProps<T>) => {
   const id = useId();
   const {
@@ -28,26 +37,28 @@ const Input = <T extends FieldValues>({
     rules,
   });
 
-  React.useEffect(() => {
-    console.log(error)
-  },[error])
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = type === "number" ? e.target.valueAsNumber : e.target.value;
+    const value = parseInput(type, e.target);
     input.onChange(value);
+    props.onChange?.(e);
   };
 
   const handleClear = () => {
-    const defaultValue = type === "number" ? 0 : "";
+    if (!isClearable) return;
+    const defaultValue = type === "number" ? 0 : type === "file" ? undefined : "";
     input.onChange(defaultValue);
   };
 
   return (
     <FormInput
-      {...rest}
-      {...input}
+      {...props}
       id={id}
+      className={cn(className)}
+      isClearable={isClearable}
       type={type}
+      value={type === "file" ? undefined : input.value}
+      radius={radius}
+      variant={variant}
       onChange={handleChange}
       onClear={handleClear}
       isInvalid={invalid}
