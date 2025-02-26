@@ -9,12 +9,14 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./ui/carousel";
+} from "@/components/ui/carousel";
 import RateStars from "@/components/user-activity/RateStars";
 import { Novel } from "@/lib/types/novel";
 
+type DevPicks = Omit<Novel, "coverUrl"> & { coverUrl: string };
+
 interface GalleryProps {
-  items: Novel[];
+  items: DevPicks[];
   hasControls: boolean;
 }
 
@@ -69,7 +71,7 @@ export default function Gallery({ items, hasControls = false }: GalleryProps) {
 }
 
 interface GalleryItemProps {
-  item: Novel;
+  item: DevPicks;
   isExpanded: boolean;
   toggleReadMore: (id: number) => void;
 }
@@ -101,7 +103,7 @@ function GalleryItem({ item, isExpanded, toggleReadMore }: GalleryItemProps) {
             className="text-lg font-semibold">
             {item.title}
           </a>
-          <RateStars rate={item.rating} reviewsUrl={item.reviewsUrl ?? ""} />
+          <RateStars name="rating" readOnly rating={item.rating} reviewsUrl={item.reviewsUrl ?? ""} />
         </span>
         <p
           className={descriptionClasses}
