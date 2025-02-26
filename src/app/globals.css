@@ -82,3 +82,16 @@ body {
     @apply px-3 w-full inline-flex flex-row shadow-sm bg-default-100 border-2 border-default-200 hover:border-default-400 rounded-none items-center justify-center gap-0 h-14 min-h-14 py-2;
   }
 }
+
+.scroll-size-1::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-size-1::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+}
+
+.scroll-size-1::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+}
