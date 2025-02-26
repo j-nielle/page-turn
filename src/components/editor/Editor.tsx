@@ -1,11 +1,14 @@
+"use client"
+
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import Quill, { type Delta, type Range } from "quill";
 import "quill/dist/quill.snow.css";
-import { quillToolbar } from "@/lib/constants/quill";
+import { QuillToolbarOptions, quillToolbar } from "@/lib/constants/quill";
 
 interface EditorProps {
   readOnly?: boolean;
   defaultValue?: string | Delta;
+  toolbar?: QuillToolbarOptions;
   onTextChange?: (delta: Delta, oldDelta: Delta, source: string) => void;
   onSelectionChange?: (range: Range, oldRange: Range, source: string) => void;
   onEditorReady?: (editor: Quill) => void;
@@ -15,6 +18,7 @@ interface EditorProps {
 export default function Editor({
   readOnly = false,
   defaultValue = "",
+  toolbar = quillToolbar,
   onTextChange,
   onSelectionChange,
   onEditorReady,
@@ -45,7 +49,7 @@ EditorProps) {
       readOnly,
       modules: {
         toolbar: {
-          container: quillToolbar,
+          container: toolbar,
           handlers: {
             // image: () => handleImageUpload(quill),
           },
