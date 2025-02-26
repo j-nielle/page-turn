@@ -70,7 +70,9 @@ interface GalleryItemProps {
 }
 
 function GalleryItem({ item, isExpanded, toggleExpand }: GalleryItemProps) {
-  const descriptionClass = getDescriptionClass(isExpanded, "max-h-7");
+  const descriptionClass = getDescriptionClass(isExpanded, {
+    collapsedClass: "max-h-7",
+  });
 
   return (
     <CarouselItem className="overflow-hidden relative z-50">
@@ -85,9 +87,9 @@ function GalleryItem({ item, isExpanded, toggleExpand }: GalleryItemProps) {
 
       <div className="absolute bottom-0 space-y-3 left-4 *:relative right-0 p-4 before:absolute before:inset-0 before:bg-black/60 before:blur-lg">
         <span
-          className={cn("flex-col sm:flex-row gap-4", {
+          className={cn("flex flex-col sm:flex-row gap-4", {
             "hidden min-[490px]:flex": isExpanded,
-            "min-[490px]:flex ": !isExpanded,
+            "flex ": !isExpanded,
           })}>
           <a
             href={item.translatedNovelUrl ?? ""}
