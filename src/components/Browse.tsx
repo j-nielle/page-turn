@@ -1,6 +1,5 @@
 import React from "react";
 import FilterNovels from "@/components/novel/FilterNovels";
-import NovelList from "@/components/novel/NovelList";
 
 export default function Browse() {
   return (
