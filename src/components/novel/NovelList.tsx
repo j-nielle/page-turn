@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Slider, type SliderValue } from "@heroui/react";
+// import { Slider, type SliderValue } from "@heroui/react";
 import Novel from "./Novel";
 import { ImageSize } from "@/lib/types/image";
 import { imageSizes } from "@/lib/constants/image";
@@ -13,7 +13,7 @@ interface NovelListProps {
 }
 
 export default function NovelList({ className }: NovelListProps) {
-  const [value, setValue] = React.useState<SliderValue>(1);
+  // const [value, setValue] = React.useState<SliderValue>(1);
   const [view, setView] = React.useState<ViewTypes>('list-view');
 
   const sizes = React.useMemo<ImageSize[]>(() => imageSizes, []);
@@ -59,8 +59,8 @@ export default function NovelList({ className }: NovelListProps) {
             <Novel key={index} viewType={view}
               desc="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
               title="Hello World"
-              imgWidth={sizes[value as number].width}
-              imgHeight={sizes[value as number].height}
+              imgWidth={sizes[1].width}
+              imgHeight={sizes[1].height}
             />
           )
         })}

@@ -1,4 +1,4 @@
-import React, { FormEventHandler } from 'react'
+import React from 'react'
 import { LayoutList, LayoutGrid } from "lucide-react"
 import {
 	ToggleGroup,
@@ -6,9 +6,6 @@ import {
 } from "@/components/ui/toggle-group"
 
 export function ToggleMenu() {
-	const handleChange = (event: FormEventHandler<HTMLDivElement>) => {
-		console.log(event)
-	}
 	return (
 		<ToggleGroup variant="outline" type="single" onValueChange={(val) => console.log(val)}>
 			<ToggleGroupItem value="list-view" aria-label="List View">

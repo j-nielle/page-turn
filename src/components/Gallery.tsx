@@ -13,7 +13,6 @@ import StarRating from "@/components/user-activity/StarRating";
 import { getDescriptionClass } from "@/lib/helpers/novel";
 import { DevPicks } from "@/lib/types/novel";
 import useToggleStates from "@/lib/hooks/useToggleState";
-import { cn } from "@/lib/utils";
 
 interface GalleryProps {
   items: DevPicks[];
